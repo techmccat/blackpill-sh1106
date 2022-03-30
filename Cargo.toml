@@ -1,0 +1,40 @@
+[package]
+authors = ["techmccat <alessioa02004@gmail.com>"]
+edition = "2018"
+name = "blackpill-sh1106"
+version = "0.1.0"
+
+[[bin]]
+bench = false
+name = "blackpill-sh1106"
+test = false
+
+[dependencies]
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+embedded-graphics = "0.7"
+embedded-hal = "0.2"
+panic-halt = "0.2"
+usb-device = "0.2"
+usbd-serial = "0.1"
+heapless = "0.7.10"
+fugit = "0.3.5"
+
+[dependencies.stm32f4xx-hal]
+features = ["rt", "stm32f411"]
+version = "0.12"
+
+[dependencies.linear-quadtree]
+git = "https://github.com/techmccat/linear-quadtree"
+default-features = false
+features = ["dec"]
+
+[dependencies.sh1106]
+git = "https://github.com/jamwaffles/sh1106"
+branch = "fast-draw-improved"
+
+[profile.release]
+opt-level = "z" # optimize for size
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = "thin" # better optimizations
